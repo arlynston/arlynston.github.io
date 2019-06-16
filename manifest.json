@@ -1,0 +1,2 @@
+{ "name": "Restaurant", "short_name": "Restaurant", "icons": [{ "src": "/MOBWEB/images/icons/dish (2).png", "sizes": "128x128", "type": "image/png" },  { "src": "/MOBWEB/images/icons/dish (1).png", "sizes": "256x256", "type": "image/png" }, { "src": "/MOBWEB/images/icons/dish.png", "sizes": "512x512", "type": "image/png" }], "start_url": "/MOBWEB/index.html", "display": "standalone", "background_color": "#3E4EB8", "theme_color": "#2F3BA2" } 
+

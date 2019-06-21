@@ -1,5 +1,5 @@
  var html5rocks = {};
-  //var db;
+
     window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
     window.mozIndexedDB;
 

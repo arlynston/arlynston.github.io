@@ -1,9 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
+
 <head>
-	<title></title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A sample Restaurant app"> 
+	<meta name="theme-color" content="#2F3BA2" /> 
+
+	<title>OFFLINE PAGE</title>
+	<link rel="manifest" href="manifest.json"> 
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<h1>OFFLINE</h1>
+	<div class="jumbotron jumbotron-billboard text-center">
+		<div class="img"></div>
+		<div class="container pt">
+			<div class="text-center">
+				<img class="logo" src='/MOBWEB/images/diet.png' alt="" />
+			</div>
+			<div class="mt-5 text-color">
+				<h1>Find the best Restaurants</h1>
+			</div>
+
+		</div>
+	</div>
+	<div class="container">
+		<div>
+			<div class = "message col-md-12"></div>
+		</div>
+	</div>
+	<hr>
+	<script type="text/javascript">
+		if ('serviceWorker' in navigator) { 
+			window.addEventListener('load', () => { 
+				navigator.serviceWorker.register('service-worker.js')
+				.then((reg) => { 
+					console.log('Service worker registered.', reg);
+				});
+			});
+		}
+
+	</script>
+
+	<script type="text/javascript">
+
+
+
+		$(document).ready(function() {
+			// var valueSearchBox = $('#getText').val()
+			// var searchCity = "&q=" + valueSearchBox;
+			var settings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "https://developers.zomato.com/api/v2.1/search?entity_id=74&entity_type=city&count=100",
+				"method": "GET",
+				"headers": {
+					"user-key": "3353311a8515338cfe544bc3aa29e5ff",
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+
+			}
+
+			$.getJSON(settings, function(data) {
+
+				data = data.restaurants;
+				var html = "";
+				console.log(data);
+
+				$.each(data, function(index, value) {
+
+					var x = data[index];
+					$.each(x, function(index, value) {
+						var location = x.restaurant.location;
+						var userRating = x.restaurant.user_rating;
+						html += "<div class='data img-rounded'>";
+						html += "<div class='rating'>";
+
+						html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
+						html += "  <strong class='text-info'>" + userRating.votes + " votes</strong><br>";
+						html += "<button id='fav' style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'><i class='far fa-bookmark'></i></button><br>";
+						html += "</div>";
+						html += "<img id='thumb' class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='185' width='185' val='"+ value.thumb +"'>";
+
+						html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:red;'><strong>" + value.name + "</strong></h2></h2>";
+						html += "  <strong id='daerah' class='text-primary' val='"+ location.locality +"'>" + location.locality + "</strong><br>";
+						html += "  <h6 id='lokasi' style='color:grey;' val='"+ location.address +"''><strong>" + location.address + "</strong></h6><hr>";
+						html += "  <strong id='cuisines' val='"+ value.cuisines +"'>CUISINES</strong>: " + value.cuisines + "<br>";
+						html += "  <strong id='cost' val='"+ value.average_cost_for_two +"'>COST FOR TWO</strong>: " + value.currency + " " +value.average_cost_for_two + "<br>";
+						html += "</div><br>";
+					});
+				});
+				$(".message").html(html);
+			});
+		});
+	</script>
+
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+	<script src="js/index.js"></script>
+
 </body>
+
 </html>

@@ -2,22 +2,22 @@
 <html lang="en" >
 
 <head>
-	
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="A sample Restaurant app"> 
-	<meta name="theme-color" content="#2F3BA2" /> 
-
-	<title>GoFood  - Restaurant Finder  using  Zomato API</title>
-
-	<link rel="manifest" href="manifest.json"> 
-
-  <link rel='stylesheet' href='bootstrap.min.css'>
   
-  <link rel='stylesheet' href='font-awesome.min.css'>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A sample Restaurant app"> 
+  <meta name="theme-color" content="#2F3BA2" /> 
+
+  <title>GoFood  - Restaurant Finder  using  Zomato API</title>
+
+  <link rel="manifest" href="manifest.json"> 
+
+  <link rel='stylesheet' href='/bootstrap.min.css'>
+  
+  <link rel='stylesheet' href='/font-awesome.min.css'>
 
   <link rel="stylesheet" href="css/style.css">
-		<script>
+    <script>
  var html5rocks = {};
   //var db;
     window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
@@ -131,9 +131,7 @@
     };
 
     function renderTodo(row) {
-
       var todos = document.getElementById("todoItems");
-      
       var li = document.createElement("li");
       var a = document.createElement("BUTTON");
       var t = document.createTextNode(row.text + ", ");
@@ -172,7 +170,7 @@
     }
 
     window.addEventListener("DOMContentLoaded", init, false);
-	</script>
+  </script>
 
 
 
@@ -180,32 +178,32 @@
 </head>
 
 <body>
-	<div class="jumbotron jumbotron-billboard text-center">
-		<!-- <div class="img"></div> -->
+  <div class="jumbotron jumbotron-billboard text-center">
+    <div class="img"></div>
 
-	</div>
-	<div class="container">
-		<div>
-			<div class = "message col-md-12"></div>
-		</div>
-	</div>
+  </div>
+  <div class="container">
+    <div>
+      <div class = "message col-md-12"></div>
+    </div>
+  </div>
 
-	<p>Your Favorite Restaurant :</p>
-	<ul id="todoItems"></ul>
-	<hr>
+  <p>Your Favorite Restaurant :</p>
+  <ul id="todoItems"></ul>
+  <hr>
 
 
-	<script type="text/javascript">
-		if ('serviceWorker' in navigator) { 
-			window.addEventListener('load', () => { 
-				navigator.serviceWorker.register('service-worker.js')
-				.then((reg) => { 
-					console.log('Service worker registered.', reg);
-				});
-			});
-		}
+  <script type="text/javascript">
+    if ('serviceWorker' in navigator) { 
+      window.addEventListener('load', () => { 
+        navigator.serviceWorker.register('service-worker.js')
+        .then((reg) => { 
+          console.log('Service worker registered.', reg);
+        });
+      });
+    }
 
-	</script>
+  </script>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>

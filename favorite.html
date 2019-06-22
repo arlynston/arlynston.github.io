@@ -17,185 +17,162 @@
   <link rel='stylesheet' href='font-awesome.min.css'>
 
   <link rel="stylesheet" href="css/style.css">
-  <script>
-   var html5rocks = {};
+		<script>
+ var html5rocks = {};
   //var db;
-  window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
-  window.mozIndexedDB;
+    window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
+    window.mozIndexedDB;
 
-  if ('webkitIndexedDB' in window) {
-    window.IDBTransaction = window.webkitIDBTransaction;
-    window.IDBKeyRange = window.webkitIDBKeyRange;
-  }
+    if ('webkitIndexedDB' in window) {
+      window.IDBTransaction = window.webkitIDBTransaction;
+      window.IDBKeyRange = window.webkitIDBKeyRange;
+    }
 
-  html5rocks.indexedDB = {};
-  html5rocks.indexedDB.db = null;
+    html5rocks.indexedDB = {};
+    html5rocks.indexedDB.db = null;
 
-  html5rocks.indexedDB.onerror = function(e) {
-    console.log(e);
-  };
-
-
-
-  html5rocks.indexedDB.open = function() {
-    var version = 1;
-    var request = indexedDB.open("todos", version);
-
-
-    request.onupgradeneeded = function(e) {
-      var db = e.target.result;
-
-
-      e.target.transaction.onerror = html5rocks.indexedDB.onerror;
-
-      if(db.objectStoreNames.contains("todo")) {
-        db.deleteObjectStore("todo");
-      }
-
-      var store = db.createObjectStore("todo",
-        {keyPath: "timeStamp"});
+    html5rocks.indexedDB.onerror = function(e) {
+      console.log(e);
     };
 
-    request.onsuccess = function(e) {
-      html5rocks.indexedDB.db = e.target.result;
-      html5rocks.indexedDB.getAllTodoItems();
+
+
+    html5rocks.indexedDB.open = function() {
+      var version = 1;
+      var request = indexedDB.open("todos", version);
+
+
+      request.onupgradeneeded = function(e) {
+        var db = e.target.result;
+
+
+        e.target.transaction.onerror = html5rocks.indexedDB.onerror;
+
+        if(db.objectStoreNames.contains("todo")) {
+          db.deleteObjectStore("todo");
+        }
+
+        var store = db.createObjectStore("todo",
+          {keyPath: "timeStamp"});
+      };
+
+      request.onsuccess = function(e) {
+        html5rocks.indexedDB.db = e.target.result;
+        html5rocks.indexedDB.getAllTodoItems();
+      };
+
+      request.onerror = html5rocks.indexedDB.onerror;
     };
 
-    request.onerror = html5rocks.indexedDB.onerror;
-  };
+    html5rocks.indexedDB.addTodo = function(todoText, daerah, alamat, cuisines,cost,thumb) {
+      var db = html5rocks.indexedDB.db;
+      var trans = db.transaction(["todo"], "readwrite");
+      var store = trans.objectStore("todo");
 
-  html5rocks.indexedDB.addTodo = function(todoText, daerah, alamat, cuisines,cost,thumb) {
-    var db = html5rocks.indexedDB.db;
-    var trans = db.transaction(["todo"], "readwrite");
-    var store = trans.objectStore("todo");
+      var data = {
+        "text": todoText,
+        "daerah": daerah,
+        "alamat": alamat,
+        "cuisines": cuisines,
+        "cost": cost,
+        "thumb": thumb,
+        "timeStamp": new Date().getTime()
+      };
 
-    var data = {
-      "text": todoText,
-      "daerah": daerah,
-      "alamat": alamat,
-      "cuisines": cuisines,
-      "cost": cost,
-      "thumb": thumb,
-      "timeStamp": new Date().getTime()
+      var request = store.put(data);
+
+      request.onsuccess = function(e) {
+        html5rocks.indexedDB.getAllTodoItems();
+      };
+
+      request.onerror = function(e) {
+        console.log("Error Adding: ", e);
+      };
     };
 
-    var request = store.put(data);
+    html5rocks.indexedDB.deleteTodo = function(id) {
+      var db = html5rocks.indexedDB.db;
+      var trans = db.transaction(["todo"], "readwrite");
+      var store = trans.objectStore("todo");
 
-    request.onsuccess = function(e) {
-      html5rocks.indexedDB.getAllTodoItems();
+      var request = store.delete(id);
+
+      request.onsuccess = function(e) {
+        html5rocks.indexedDB.getAllTodoItems();
+      };
+
+      request.onerror = function(e) {
+        console.log("Error Adding: ", e);
+      };
     };
 
-    request.onerror = function(e) {
-      console.log("Error Adding: ", e);
-    };
-  };
+    html5rocks.indexedDB.getAllTodoItems = function() {
+      var todos = document.getElementById("todoItems");
+      todos.innerHTML = "";
 
-  html5rocks.indexedDB.deleteTodo = function(id) {
-    var db = html5rocks.indexedDB.db;
-    var trans = db.transaction(["todo"], "readwrite");
-    var store = trans.objectStore("todo");
-
-    var request = store.delete(id);
-
-    request.onsuccess = function(e) {
-      html5rocks.indexedDB.getAllTodoItems();
-    };
-
-    request.onerror = function(e) {
-      console.log("Error Adding: ", e);
-    };
-  };
-
-  html5rocks.indexedDB.getAllTodoItems = function() {
-    var todos = document.getElementById("todoItems");
-    todos.innerHTML = "";
-
-    var db = html5rocks.indexedDB.db;
-    var trans = db.transaction(["todo"], "readwrite");
-    var store = trans.objectStore("todo");
+      var db = html5rocks.indexedDB.db;
+      var trans = db.transaction(["todo"], "readwrite");
+      var store = trans.objectStore("todo");
 
 
-    var keyRange = IDBKeyRange.lowerBound(0);
-    var cursorRequest = store.openCursor(keyRange);
+      var keyRange = IDBKeyRange.lowerBound(0);
+      var cursorRequest = store.openCursor(keyRange);
 
-    cursorRequest.onsuccess = function(e) {
-      var result = e.target.result;
-      if(!!result == false)
-        return;
+      cursorRequest.onsuccess = function(e) {
+        var result = e.target.result;
+        if(!!result == false)
+          return;
 
-      renderTodo(result.value);
-      result.continue();
+        renderTodo(result.value);
+        result.continue();
+      };
+
+      cursorRequest.onerror = html5rocks.indexedDB.onerror;
     };
 
-    cursorRequest.onerror = html5rocks.indexedDB.onerror;
-  };
+    function renderTodo(row) {
 
-  function renderTodo(row) {
+      var todos = document.getElementById("todoItems");
+      
+      var li = document.createElement("li");
+      var a = document.createElement("BUTTON");
+      var t = document.createTextNode(row.text + ", ");
+      var x = document.createTextNode(row.daerah+ ", ");
+      var y = document.createTextNode(row.alamat+ ", ");
+      var z = document.createTextNode(row.cuisines+ ", ");
+      var q = document.createTextNode(row.cost+ ", ");
+      var r = document.createElement("IMG");
+      r.setAttribute("src", row.thumb);
 
-    var todos = document.getElementById("todoItems");
-    var html = "<h1>coba</h1>";
-    // html += "<div class='data img-rounded'>";
-    // html += "<div class='rating'>";
+      a.addEventListener("click", function() {
+        html5rocks.indexedDB.deleteTodo(row.timeStamp);
+      }, false);
 
-    // html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
-    // html += "  <strong class='text-info'>" + userRating.votes + " votes</strong><br>";
-    // html += "<button id='fav' style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'><i class='far fa-bookmark'></i></button><br>";
-    // html += "</div>";
-    // disini
-    // html += "<img id='thumb' class='resimg img-rounded' src=" + row.thumb + " alt='Restaurant Image' height='185' width='185' val='"+ row.thumb +"'>";
+      a.href = "#";
+      a.textContent = " Delete";
+      li.appendChild(t);
+      li.appendChild(x);
+      li.appendChild(y);
+      li.appendChild(z);
+      li.appendChild(q);
+      li.appendChild(r);
+      li.appendChild(a);
 
-    // html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:red;'><strong>" + row.text + "</strong></h2></h2>";
-    // html += "  <strong id='daerah' class='text-primary' val='"+ row.daerah +"'>" + row.daerah + "</strong><br>";
-    // html += "  <h6 id='lokasi' style='color:grey;' val='"+ row.alamat +"''><strong>" + row.alamat + "</strong></h6><hr>";
-    // html += "  <strong id='cuisines' val='"+ row.cuisines +"'>CUISINES</strong>: " + row.cuisines + "<br>";
-    // html += "  <strong id='cost' val='"+ row.cost +"'>COST FOR TWO</strong>: " +row.cost + "<br>";
-    // html += "</div><br>";
-    // disini
-    // var div_img = document.createElement("div");
-    // div_img.className = "data-img-rounded";
-    // var div_rating = document.createElement("div");
-    // div_rating.className = "rating";
+      todos.appendChild(li);
+    }
 
-    var li = document.createElement("li");
-    var a = document.createElement("BUTTON");
-    var t = document.createTextNode(row.text + ", ");
-    var x = document.createTextNode(row.daerah+ ", ");
-    var y = document.createTextNode(row.alamat+ ", ");
-    var z = document.createTextNode(row.cuisines+ ", ");
-    var q = document.createTextNode(row.cost+ ", ");
-    var r = document.createElement("IMG");
-    r.setAttribute("src", row.thumb);
+    function addTodo(judul, daerah, alamat, cuisines,cost,thumb) {
+      var todo = document.getElementById("getText");
+      html5rocks.indexedDB.addTodo(judul, daerah, alamat, cuisines,cost,thumb);
+      todo.value = "";
+    }
 
-    a.addEventListener("click", function() {
-      html5rocks.indexedDB.deleteTodo(row.timeStamp);
-    }, false);
+    function init() {
+      html5rocks.indexedDB.open();
+    }
 
-    a.href = "#";
-    a.textContent = " Delete";
-    li.appendChild(t);
-    li.appendChild(x);
-    li.appendChild(y);
-    li.appendChild(z);
-    li.appendChild(q);
-    li.appendChild(r);
-    li.appendChild(a);
-
-    todos.appendChild(li);
-    // $("#todoItems").html(html);
-  }
-
-  function addTodo(judul, daerah, alamat, cuisines,cost,thumb) {
-    var todo = document.getElementById("getText");
-    html5rocks.indexedDB.addTodo(judul, daerah, alamat, cuisines,cost,thumb);
-    todo.value = "";
-  }
-
-  function init() {
-    html5rocks.indexedDB.open();
-  }
-
-  window.addEventListener("DOMContentLoaded", init, false);
-</script>
+    window.addEventListener("DOMContentLoaded", init, false);
+	</script>
 
 
 
@@ -230,8 +207,8 @@
 
 	</script>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
 
 
 

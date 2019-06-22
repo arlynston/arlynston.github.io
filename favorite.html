@@ -132,31 +132,95 @@
 
     function renderTodo(row) {
       var todos = document.getElementById("todoItems");
-      var li = document.createElement("li");
-      var a = document.createElement("BUTTON");
-      var t = document.createTextNode(row.text + ", ");
-      var x = document.createTextNode(row.daerah+ ", ");
-      var y = document.createTextNode(row.alamat+ ", ");
-      var z = document.createTextNode(row.cuisines+ ", ");
-      var q = document.createTextNode(row.cost+ ", ");
-      var r = document.createElement("IMG");
-      r.setAttribute("src", row.thumb);
 
-      a.addEventListener("click", function() {
-        html5rocks.indexedDB.deleteTodo(row.timeStamp);
-      }, false);
 
-      a.href = "#";
-      a.textContent = " Delete";
-      li.appendChild(t);
-      li.appendChild(x);
-      li.appendChild(y);
-      li.appendChild(z);
-      li.appendChild(q);
-      li.appendChild(r);
-      li.appendChild(a);
+      var div_img = document.createElement("div");
+      var div_rating = document.createElement("div");
+      var span = document.createElement("span");
+      var img = document.createElement("IMG");
 
-      todos.appendChild(li);
+      var h2 = document.createElement("h2");
+      var strong_name = document.createElement("strong");
+
+      div_img.setAttribute("class", "data img-rounded");
+      div_rating.setAttribute("class", "rating");
+
+      img.setAttribute("id", "thumb");
+      img.setAttribute("class", "resimg img-rounded");
+      img.setAttribute("width", "185");
+      img.setAttribute("height", "185");
+      img.setAttribute("src", row.thumb);
+
+      div_img.appendChild(img);
+      todos.appendChild(div_img);
+
+      h2.setAttribute("style", "color:red;");
+      strong_name.appendChild(row.text);
+      h2.appendChild(strong_name);
+      todos.appendChild(h2);
+
+      var strong_daerah = document.createElement("strong");
+      strong_daerah.setAttribute("class", "text-primary");
+      strong_daerah.appendChild(row.daerah);
+      todos.appendChild(strong_daerah);
+
+      var h6 = document.createElement("h6");
+      var strong_alamat = document.createElement("strong");
+
+      strong_alamat.appendChild(row.alamat);
+      h6.setAttribute("style", "color:grey;");
+      h6.appendChild(strong_alamat);
+      todos.appendChild(h6);
+
+      var strong_cuisines = document.createElement("strong");
+      var cuisine_text = document.createTextNode("CUISINES");
+      strong_cuisines.appendChild(cuisine_text);
+      todos.appendChild(strong_cuisines);
+      todos.appendChild(row.cuisines);
+      var br = document.createElement("br");
+      todos.appendChild(br);
+
+      var strong_cost = document.createElement("strong");
+      var cost_text = document.createTextNode("COST FOR TWO");
+      strong_cost.appendChild(cost_text);
+      todos.appendChild(strong_cost);
+      todos.appendChild(row.cost);
+      todos.appendChild(br);
+
+      todos.appendChild(br);
+
+
+
+
+
+
+
+
+      // var li = document.createElement("li");
+      // var a = document.createElement("BUTTON");
+      // var t = document.createTextNode(row.text + ", ");
+      // var x = document.createTextNode(row.daerah+ ", ");
+      // var y = document.createTextNode(row.alamat+ ", ");
+      // var z = document.createTextNode(row.cuisines+ ", ");
+      // var q = document.createTextNode(row.cost+ ", ");
+      // var r = document.createElement("IMG");
+      // r.setAttribute("src", row.thumb);
+
+      // a.addEventListener("click", function() {
+      //   html5rocks.indexedDB.deleteTodo(row.timeStamp);
+      // }, false);
+
+      // a.href = "#";
+      // a.textContent = " Delete";
+      // li.appendChild(t);
+      // li.appendChild(x);
+      // li.appendChild(y);
+      // li.appendChild(z);
+      // li.appendChild(q);
+      // li.appendChild(r);
+      // li.appendChild(a);
+
+      // todos.appendChild(li);
     }
 
     function addTodo(judul, daerah, alamat, cuisines,cost,thumb) {

@@ -18,8 +18,6 @@ self.addEventListener('install', function(event) {
           'https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css',
           'https://code.jquery.com/jquery-1.11.3.min.js',
           '/manifest.json',
-          'https://image.ibb.co/fqkgMw/dust_scratches.png',
-          '/images/autumn.jpg',
           '/js/index.js',
         ]);
       })

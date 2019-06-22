@@ -133,23 +133,27 @@
   function renderTodo(row) {
 
     var todos = document.getElementById("todoItems");
-
-    var html = "";
-    html += "<div class='data img-rounded'>";
+    var ht = "<h1>coba</h1>";
+    // var html = "";
+    // html += "<div class='data img-rounded'>";
     // html += "<div class='rating'>";
 
     // html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
     // html += "  <strong class='text-info'>" + userRating.votes + " votes</strong><br>";
     // html += "<button id='fav' style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'><i class='far fa-bookmark'></i></button><br>";
     // html += "</div>";
-    html += "<img id='thumb' class='resimg img-rounded' src=" + row.thumb + " alt='Restaurant Image' height='185' width='185' val='"+ row.thumb +"'>";
 
-    html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:red;'><strong>" + row.text + "</strong></h2></h2>";
-    html += "  <strong id='daerah' class='text-primary' val='"+ row.daerah +"'>" + row.daerah + "</strong><br>";
-    html += "  <h6 id='lokasi' style='color:grey;' val='"+ row.alamat +"''><strong>" + row.alamat + "</strong></h6><hr>";
-    html += "  <strong id='cuisines' val='"+ row.cuisines +"'>CUISINES</strong>: " + row.cuisines + "<br>";
-    html += "  <strong id='cost' val='"+ row.cost +"'>COST FOR TWO</strong>: " +row.cost + "<br>";
-    html += "</div><br>";
+
+    // disini
+    // html += "<img id='thumb' class='resimg img-rounded' src=" + row.thumb + " alt='Restaurant Image' height='185' width='185' val='"+ row.thumb +"'>";
+
+    // html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:red;'><strong>" + row.text + "</strong></h2></h2>";
+    // html += "  <strong id='daerah' class='text-primary' val='"+ row.daerah +"'>" + row.daerah + "</strong><br>";
+    // html += "  <h6 id='lokasi' style='color:grey;' val='"+ row.alamat +"''><strong>" + row.alamat + "</strong></h6><hr>";
+    // html += "  <strong id='cuisines' val='"+ row.cuisines +"'>CUISINES</strong>: " + row.cuisines + "<br>";
+    // html += "  <strong id='cost' val='"+ row.cost +"'>COST FOR TWO</strong>: " +row.cost + "<br>";
+    // html += "</div><br>";
+    // disini
 
     // var div_img = document.createElement("div");
     // div_img.className = "data-img-rounded";
@@ -180,7 +184,7 @@
     // li.appendChild(r);
     // li.appendChild(a);
 
-    todos.appendChild(html);
+    todos.html(ht);
   }
 
   function addTodo(judul, daerah, alamat, cuisines,cost,thumb) {

@@ -38,7 +38,7 @@
 
       request.onsuccess = function(e) {
         html5rocks.indexedDB.db = e.target.result;
-        html5rocks.indexedDB.getAllTodoItems();
+        // html5rocks.indexedDB.getAllTodoItems();
       };
 
       request.onerror = html5rocks.indexedDB.onerror;
@@ -62,7 +62,7 @@
       var request = store.put(data);
 
       request.onsuccess = function(e) {
-        html5rocks.indexedDB.getAllTodoItems();
+        // html5rocks.indexedDB.getAllTodoItems();
       };
 
       request.onerror = function(e) {
@@ -86,26 +86,26 @@
       };
     };
 
-    html5rocks.indexedDB.getAllTodoItems = function() {
-      var todos = document.getElementById("todoItems");
-      todos.innerHTML = "";
+    // html5rocks.indexedDB.getAllTodoItems = function() {
+    //   var todos = document.getElementById("todoItems");
+    //   todos.innerHTML = "";
 
-      var db = html5rocks.indexedDB.db;
-      var trans = db.transaction(["todo"], "readwrite");
-      var store = trans.objectStore("todo");
+    //   var db = html5rocks.indexedDB.db;
+    //   var trans = db.transaction(["todo"], "readwrite");
+    //   var store = trans.objectStore("todo");
 
 
-      var keyRange = IDBKeyRange.lowerBound(0);
-      var cursorRequest = store.openCursor(keyRange);
+    //   var keyRange = IDBKeyRange.lowerBound(0);
+    //   var cursorRequest = store.openCursor(keyRange);
 
-      cursorRequest.onsuccess = function(e) {
-        var result = e.target.result;
-        if(!!result == false)
-          return;
+    //   cursorRequest.onsuccess = function(e) {
+    //     var result = e.target.result;
+    //     if(!!result == false)
+    //       return;
 
-        renderTodo(result.value);
-        result.continue();
-      };
+    //     renderTodo(result.value);
+    //     result.continue();
+    //   };
 
       cursorRequest.onerror = html5rocks.indexedDB.onerror;
     };

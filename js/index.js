@@ -1,5 +1,5 @@
  var html5rocks = {};
-
+  //var db;
     window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
     window.mozIndexedDB;
 
@@ -70,21 +70,21 @@
       };
     };
 
-    html5rocks.indexedDB.deleteTodo = function(id) {
-      var db = html5rocks.indexedDB.db;
-      var trans = db.transaction(["todo"], "readwrite");
-      var store = trans.objectStore("todo");
+    // html5rocks.indexedDB.deleteTodo = function(id) {
+    //   var db = html5rocks.indexedDB.db;
+    //   var trans = db.transaction(["todo"], "readwrite");
+    //   var store = trans.objectStore("todo");
 
-      var request = store.delete(id);
+    //   var request = store.delete(id);
 
-      request.onsuccess = function(e) {
-        html5rocks.indexedDB.getAllTodoItems();
-      };
+    //   request.onsuccess = function(e) {
+    //     html5rocks.indexedDB.getAllTodoItems();
+    //   };
 
-      request.onerror = function(e) {
-        console.log("Error Adding: ", e);
-      };
-    };
+    //   request.onerror = function(e) {
+    //     console.log("Error Adding: ", e);
+    //   };
+    // };
 
     // html5rocks.indexedDB.getAllTodoItems = function() {
     //   var todos = document.getElementById("todoItems");
@@ -138,10 +138,6 @@
     }
 
     window.addEventListener("DOMContentLoaded", init, false);
-
-
-
-
 
 
 $(document).ready(function() {

@@ -107,8 +107,8 @@
     //     result.continue();
     //   };
 
-      cursorRequest.onerror = html5rocks.indexedDB.onerror;
-    };
+    //   cursorRequest.onerror = html5rocks.indexedDB.onerror;
+    // };
 
     function renderTodo(row) {
       var todos = document.getElementById("todoItems");

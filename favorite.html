@@ -2,18 +2,19 @@
 <html lang="en" >
 
 <head>
-  
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A sample Restaurant app"> 
-  <meta name="theme-color" content="#2F3BA2" /> 
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A sample Restaurant app"> 
+	<meta name="theme-color" content="#2F3BA2" /> 
 
-  <title>GoFood  - Restaurant Finder  using  Zomato API</title>
+	<title>GoFood  - Restaurant Finder  using  Zomato API</title>
 
-  <link rel="manifest" href="manifest.json"> 
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-  <link rel="stylesheet" href="css/style.css">
+	<link rel="manifest" href="manifest.json"> 
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
   <script>
    var html5rocks = {};
    window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
@@ -126,9 +127,6 @@
   };
 
   function renderTodo(row) {
-    var todos = document.getElementById("todoItems");
-    
-
     var gambar = document.createElement("IMG");
     gambar.setAttribute("src", row.thumb);
     gambar.setAttribute("class", "resimg img-rounded");
@@ -136,21 +134,17 @@
     gambar.setAttribute("height", "185");
     gambar.setAttribute("width", "185");
 
-    // var li = document.createElement("li");
-    //var nama = document.createTextNode(row.text + ", ");
     var nama1 = document.createElement("h2");
-    nama1.setAttribute("style", "color:red;");
+    nama1.setAttribute("style", "color:#E84241;");
     var nama2 = document.createElement("strong");
     nama2.textContent = row.text + "";
     nama1.appendChild(nama2);
 
-    // var x = document.createTextNode(row.daerah+ ", ");
     var daerah = document.createElement("strong");
     daerah.setAttribute("class", "text-primary");
     daerah.textContent = row.daerah+"";
     var br = document.createElement("br");
 
-    // var y = document.createTextNode(row.alamat+ ", ");
     var alamat = document.createElement("h6");
     alamat.setAttribute("style", "color:grey;");
     var alamat2 = document.createElement("strong");
@@ -158,20 +152,16 @@
     alamat.appendChild(alamat2);
     var hr = document.createElement("hr");
 
-    // var z = document.createTextNode(row.cuisines+ ", ");
     var cuisine = document.createElement("strong");
     cuisine.textContent = "CUISINE: " + row.cuisines + "";
     var br2 = document.createElement("br");
 
-    // var q = document.createTextNode(row.cost+ ", ");
     var cost = document.createElement("strong");
     cost.textContent = "COST FOR TWO: IDR. " + row.cuisines + "";
     var br3 = document.createElement("br");
 
     var a = document.createElement("BUTTON");
     a.setAttribute("class", "rating btn btn-danger");
-
-    
     a.addEventListener("click", function() {
       html5rocks.indexedDB.deleteTodo(row.timeStamp);
     }, false);
@@ -193,22 +183,11 @@
     divv.appendChild(br2);
     divv.appendChild(cost);
     divv.appendChild(br3);
+
+    var todos = document.getElementById("todoItems");
     todos.appendChild(divv);
     todos.appendChild(br4);
 
-
-    // li.appendChild(t);
-    // li.appendChild(x);
-    // li.appendChild(y);
-    // li.appendChild(z);
-    // li.appendChild(q);
-
-    //todos.appendChild(hr2);
-
-
-    
-
-    //todos.appendChild(li);
   }
 
   function addTodo(judul, daerah, alamat, cuisines,cost,thumb) {
@@ -225,25 +204,24 @@
 </script>
 </head>
 <body>
-  <div class="jumbotron jumbotron-billboard text-center">
-    <div class="img"></div>
-  </div>
-  <div class="container">
-    <div>
-      <div class = "message col-md-12"></div>
+	<div class="jumbotron jumbotron-billboard text-center">
+		<div class="img"></div>
+    <div class="container pt">
+      
+      <div class="mt-5 text-color">
+        <h1 style="font-family: 'Permanent Marker', cursive;color: #FFD76B;text-shadow: 2px 2px 10px #000000;">Favorite Restaurants List</h1>
+      </div>
     </div>
-  </div>
-  <p>Your Favorite Restaurant :</p>
+	</div>
+	<div class="container">
+		<div>
+			<div class = "message col-md-12"></div>
+		</div>
+	</div>
   <div class="container">
   <div>
    <div id="todoItems" class="message col-md-12">
-    <img class="resimg img-rounded" src="" alt="Restaurant Image" height="185" width="185">
-    <h2 style="color:red;"><strong>value.name</strong></h2>
-    <strong class="text-primary" > location.locality</strong><br>
-    <h6 style="color:grey;"><strong>location.address</strong></h6><hr>
-    <strong>CUISINES</strong>:value.cuisines<br>
-    <strong>COST FOR TWO</strong>:value.average_cost_for_two<br>
-    <a href=""></a>
+
   </div>
 </div><br>
 </div>

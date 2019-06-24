@@ -142,6 +142,8 @@
 
 $(document).ready(function() {
 
+  select();
+
  $("#getMessage").on("click", function() {
   var valueSearchBox = $('#getText').val()
   if (valueSearchBox === "") {
@@ -190,7 +192,7 @@ $(document).ready(function() {
      html += "</div>";
      html += "<img id='thumb' class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='185' width='185' val='"+ value.thumb +"'>";
 
-     html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:red;'><strong>" + value.name + "</strong></h2></h2>";
+     html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:#E84241;'><strong>" + value.name + "</strong></h2></h2>";
      html += "  <strong id='daerah' class='text-primary' val='"+ location.locality +"'>" + location.locality + "</strong><br>";
      html += "  <h6 id='lokasi' style='color:grey;' val='"+ location.address +"''><strong>" + location.address + "</strong></h6><hr>";
      html += "  <strong id='cuisines' val='"+ value.cuisines +"'>CUISINES</strong>: " + value.cuisines + "<br>";
@@ -220,9 +222,6 @@ $(document).on("click", "#fav", function() {
         //alert(get_value);
        addTodo(get_value,daerah,alamat,cuisines,cost,thumb);
       });
-
-
-
 
  //--------------------------------------------------------------------------------------------------------
  $("#select_id").change(function() {

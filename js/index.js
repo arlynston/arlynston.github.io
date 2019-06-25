@@ -193,7 +193,7 @@ $.getJSON(settings, function(data) {
    html += "<button id='fav' style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'><i class='far fa-bookmark'></i></button><br>";
    html += "</div>";
    html += "<div class='gambar'>";
-   html += "<img id='thumb' class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='20%' width='20%' val='"+ value.thumb +"'>";
+   html += "<img id='thumb' class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='30%' width='30%' val='"+ value.thumb +"'>";
    html += "</div>";
    html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:#E84241;'><strong>" + value.name + "</strong></h2></h2>";
    html += "  <strong id='daerah' class='text-primary' val='"+ location.locality +"'>" + location.locality + "</strong><br>";

@@ -70,7 +70,8 @@ input:focus {
     width: 100%;
   }
   .rating{
-    float:  left;
+    display:  none;
+    /*float:  left;*/
     /*width:  100%;
 */    /*margin-left: 100%;
     margin-right: 100%;*/

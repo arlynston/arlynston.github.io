@@ -59,7 +59,7 @@
 				</div>
 
 				
-		
+
 				
 				
 			</div>
@@ -85,45 +85,32 @@
 	</script>
 
 	<script type="text/javascript">
-		var deferredPrompt;
+    let deferredPrompt;
 
-		window.addEventListener('beforeinstallprompt', function(e) {
-			console.log('beforeinstallprompt Event fired');
-			e.preventDefault();
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        btnSave.style.display = 'block';
+        return false;
+    }); 
 
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-
-  return false;
-});
-
-		btnSave.addEventListener('click', function() {
-			if(deferredPrompt !== undefined) {
-    // The user has had a postive interaction with our app and Chrome
-    // has tried to prompt previously, so let's show the prompt.
-    deferredPrompt.prompt();
-
-    // Follow what the user has done with the prompt.
-    deferredPrompt.userChoice.then(function(choiceResult) {
-
-    	console.log(choiceResult.outcome);
-
-    	if(choiceResult.outcome == 'dismissed') {
-    		console.log('User cancelled home screen install');
-    	}
-    	else {
-    		console.log('User added to home screen');
-    	}
-
-      // We no longer need the prompt.  Clear it up.
-      deferredPrompt = null;
-  });
-}
-});
-</script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-<script src="js/index.js"></script>
+    btnSave.addEventListener('click', (e) => {
+        document.getElementById("btnSave").style.display = "none";
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } 
+            else{
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+    });
+	</script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+	<script src="js/index.js"></script>
 
 
 

@@ -70,13 +70,14 @@ input:focus {
     width: 100%;
   }
   .rating{
-    width:  100%;
-    /*margin-left: 100%;
+    float:  left;
+    /*width:  100%;
+*/    /*margin-left: 100%;
     margin-right: 100%;*/
   }
-  #inirating{
+/*  #inirating{
     width: 100%;
-  }
+  }*/
 }
 
 

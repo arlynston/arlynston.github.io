@@ -71,6 +71,7 @@ input:focus {
   }
   .rating{
     width:  100%;
+    float:  left;
     /*margin-left: 100%;
     margin-right: 100%;*/
   }

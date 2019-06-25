@@ -70,7 +70,8 @@ input:focus {
     width: 100%;
   }
   .rating{
-    width:  100%;
+    width:  50%;
+    margin-bottom:  5px;
   }
   #inirating{
     display:  none;

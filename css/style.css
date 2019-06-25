@@ -66,6 +66,9 @@ input:focus {
     height: 50%;
     margin-right: 100%;
   }
+  .rating{
+    margin: 100%;
+  }
 }
 
 

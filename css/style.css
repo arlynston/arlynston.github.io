@@ -50,15 +50,12 @@ input:focus {
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  .jumbotron .logo {
+  .jumbotron {
 
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  .logo {
-  width: 150px;
-  height: 150px;
-}
+
 }
 @media screen and (max-width: 600px) {
   .col-xs-2, .col-xs-3 {
@@ -82,10 +79,7 @@ input:focus {
   #inirating{
     display:  none;
   }
-  .logo {
-  width: 150px;
-  height: 150px;
-}
+
 }
 
 

@@ -131,6 +131,7 @@
       var todo = document.getElementById("getText");
       html5rocks.indexedDB.addTodo(judul, daerah, alamat, cuisines,cost,thumb);
       todo.value = "";
+      console.log("berhasil");
     }
 
     function init() {

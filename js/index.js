@@ -133,6 +133,7 @@
       html5rocks.indexedDB.addTodo(judul, daerah, alamat, cuisines,cost,thumb);
       todo.value = "";
       console.log("berhasil");
+      alert("Save to Favorite!");
     }
 
     function init() {

@@ -69,6 +69,9 @@ input:focus {
   #fav{
     width: 100%;
   }
+  .rating{
+    margin-left:  100%;
+  }
   .text-info{
     display:  none;
   }

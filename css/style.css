@@ -56,6 +56,12 @@ input:focus {
     padding-bottom: 20px;
   }
 }
+@media screen and (max-width: 600px) {
+  .col-xs-2, .col-xs-3 {
+    width: 100%;
+    margin-top: 0;
+  }
+}
 
 
 .text-color {

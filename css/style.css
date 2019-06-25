@@ -56,6 +56,17 @@ input:focus {
     padding-bottom: 20px;
   }
 }
+@media screen and (max-width: 360px) {
+  .jumbotron {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .jumbotron .logo {
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
 
 .text-color {
   color: white;

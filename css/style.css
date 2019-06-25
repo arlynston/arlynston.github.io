@@ -61,6 +61,11 @@ input:focus {
     width: 100%;
     margin-top: 0;
   }
+  .resimg{
+    width: 10%;
+    height: 10%;
+    margin-right: 100%;
+  }
 }
 
 

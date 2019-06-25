@@ -11,6 +11,7 @@ self.addEventListener('install', function(event) {
           '/',
           '/offline.html',
           '/index.html',
+          '/favorite.html',
           '/bootstrap.min.css',
           '/font-awesome.min.css',
           '/css/style.css',

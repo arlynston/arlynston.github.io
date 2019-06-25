@@ -1,43 +1,43 @@
  var html5rocks = {};
   //var db;
-    window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
-    window.mozIndexedDB;
+  window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
+  window.mozIndexedDB;
 
-    if ('webkitIndexedDB' in window) {
-      window.IDBTransaction = window.webkitIDBTransaction;
-      window.IDBKeyRange = window.webkitIDBKeyRange;
-    }
+  if ('webkitIndexedDB' in window) {
+    window.IDBTransaction = window.webkitIDBTransaction;
+    window.IDBKeyRange = window.webkitIDBKeyRange;
+  }
 
-    html5rocks.indexedDB = {};
-    html5rocks.indexedDB.db = null;
+  html5rocks.indexedDB = {};
+  html5rocks.indexedDB.db = null;
 
-    html5rocks.indexedDB.onerror = function(e) {
-      console.log(e);
+  html5rocks.indexedDB.onerror = function(e) {
+    console.log(e);
+  };
+
+
+
+  html5rocks.indexedDB.open = function() {
+    var version = 1;
+    var request = indexedDB.open("todos", version);
+
+
+    request.onupgradeneeded = function(e) {
+      var db = e.target.result;
+
+
+      e.target.transaction.onerror = html5rocks.indexedDB.onerror;
+
+      if(db.objectStoreNames.contains("todo")) {
+        db.deleteObjectStore("todo");
+      }
+
+      var store = db.createObjectStore("todo",
+        {keyPath: "timeStamp"});
     };
 
-
-
-    html5rocks.indexedDB.open = function() {
-      var version = 1;
-      var request = indexedDB.open("todos", version);
-
-
-      request.onupgradeneeded = function(e) {
-        var db = e.target.result;
-
-
-        e.target.transaction.onerror = html5rocks.indexedDB.onerror;
-
-        if(db.objectStoreNames.contains("todo")) {
-          db.deleteObjectStore("todo");
-        }
-
-        var store = db.createObjectStore("todo",
-          {keyPath: "timeStamp"});
-      };
-
-      request.onsuccess = function(e) {
-        html5rocks.indexedDB.db = e.target.result;
+    request.onsuccess = function(e) {
+      html5rocks.indexedDB.db = e.target.result;
         // html5rocks.indexedDB.getAllTodoItems();
       };
 
@@ -142,17 +142,17 @@
     window.addEventListener("DOMContentLoaded", init, false);
 
 
-$(document).ready(function() {
+    $(document).ready(function() {
 
-  select();
+      select();
 
- $("#getMessage").on("click", function() {
-  var valueSearchBox = $('#getText').val()
-  if (valueSearchBox === "") {
-   return;
-  }
-  select();
- });
+      $("#getMessage").on("click", function() {
+        var valueSearchBox = $('#getText').val()
+        if (valueSearchBox === "") {
+         return;
+       }
+       select();
+     });
 
 
  //--------------------------------------------------SEARCH BY CITY-----------------------------------------
@@ -169,48 +169,49 @@ $(document).ready(function() {
    "headers": {
     "user-key": "3353311a8515338cfe544bc3aa29e5ff",
     'Content-Type': 'application/x-www-form-urlencoded'
-   }
-
   }
 
-  $.getJSON(settings, function(data) {
+}
 
-   data = data.restaurants;
-   var html = "";
-  console.log(data);
+$.getJSON(settings, function(data) {
 
-   $.each(data, function(index, value) {
+ data = data.restaurants;
+ var html = "";
+ console.log(data);
 
-    var x = data[index];
-    $.each(x, function(index, value) {
-     var location = x.restaurant.location;
-     var userRating = x.restaurant.user_rating;
-     html += "<div class='data img-rounded'>";
-     html += "<div class='rating'>";
+ $.each(data, function(index, value) {
 
-     html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
-     html += "  <strong class='text-info'>" + userRating.votes + " votes</strong><br>";
-     html += "<button id='fav' style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'><i class='far fa-bookmark'></i></button><br>";
-     html += "</div>";
-     html += "<img id='thumb' class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='20%' width='20%' val='"+ value.thumb +"'>";
+  var x = data[index];
+  $.each(x, function(index, value) {
+   var location = x.restaurant.location;
+   var userRating = x.restaurant.user_rating;
+   html += "<div class='data img-rounded'>";
+   html += "<div class='rating'>";
 
-     html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:#E84241;'><strong>" + value.name + "</strong></h2></h2>";
-     html += "  <strong id='daerah' class='text-primary' val='"+ location.locality +"'>" + location.locality + "</strong><br>";
-     html += "  <h6 id='lokasi' style='color:grey;' val='"+ location.address +"''><strong>" + location.address + "</strong></h6><hr>";
-     html += "  <strong id='cuisines' val='"+ value.cuisines +"'>CUISINES</strong>: " + value.cuisines + "<br>";
-     html += "  <strong id='cost' val='"+ value.average_cost_for_two +"'>COST FOR TWO</strong>: " + value.currency + " " +value.average_cost_for_two + "<br>";
-     html += "</div><br>";
-    });
-   });
-   $(".message").html(html);
-  });
+   html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
+   html += "  <strong class='text-info'>" + userRating.votes + " votes</strong><br>";
+   html += "<button id='fav' style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'><i class='far fa-bookmark'></i></button><br>";
+   html += "</div>";
+   html += "<div class='gambar'>";
+   html += "<img id='thumb' class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='20%' width='20%' val='"+ value.thumb +"'>";
+   html += "</div>";
+   html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:#E84241;'><strong>" + value.name + "</strong></h2></h2>";
+   html += "  <strong id='daerah' class='text-primary' val='"+ location.locality +"'>" + location.locality + "</strong><br>";
+   html += "  <h6 id='lokasi' style='color:grey;' val='"+ location.address +"''><strong>" + location.address + "</strong></h6><hr>";
+   html += "  <strong id='cuisines' val='"+ value.cuisines +"'>CUISINES</strong>: " + value.cuisines + "<br>";
+   html += "  <strong id='cost' val='"+ value.average_cost_for_two +"'>COST FOR TWO</strong>: " + value.currency + " " +value.average_cost_for_two + "<br>";
+   html += "</div><br>";
+ });
+});
+ $(".message").html(html);
+});
 
-  
-
- }
 
 
- 
+}
+
+
+
 
 $(document).on("click", "#fav", function() {
         // var todox = judul.getInnerHtml;
@@ -222,11 +223,11 @@ $(document).on("click", "#fav", function() {
         var thumb = $(this).attr("thumb");
         // console.log(get_value);
         //alert(get_value);
-       addTodo(get_value,daerah,alamat,cuisines,cost,thumb);
+        addTodo(get_value,daerah,alamat,cuisines,cost,thumb);
       });
 
  //--------------------------------------------------------------------------------------------------------
  $("#select_id").change(function() {
   select();
- });
+});
 });

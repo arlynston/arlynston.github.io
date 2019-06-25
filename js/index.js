@@ -48,6 +48,7 @@
       var db = html5rocks.indexedDB.db;
       var trans = db.transaction(["todo"], "readwrite");
       var store = trans.objectStore("todo");
+      console.log("oyee");
 
       var data = {
         "text": todoText,
@@ -110,22 +111,22 @@
     //   cursorRequest.onerror = html5rocks.indexedDB.onerror;
     // };
 
-    function renderTodo(row) {
-      var todos = document.getElementById("todoItems");
-      var li = document.createElement("li");
-      var a = document.createElement("BUTTON");
-      var t = document.createTextNode(row.text);
+    // function renderTodo(row) {
+    //   var todos = document.getElementById("todoItems");
+    //   var li = document.createElement("li");
+    //   var a = document.createElement("BUTTON");
+    //   var t = document.createTextNode(row.text);
 
-      a.addEventListener("click", function() {
-        html5rocks.indexedDB.deleteTodo(row.timeStamp);
-      }, false);
+    //   a.addEventListener("click", function() {
+    //     html5rocks.indexedDB.deleteTodo(row.timeStamp);
+    //   }, false);
 
-      a.href = "#";
-      a.textContent = " Delete";
-      li.appendChild(t);
-      li.appendChild(a);
-      todos.appendChild(li);
-    }
+    //   a.href = "#";
+    //   a.textContent = " Delete";
+    //   li.appendChild(t);
+    //   li.appendChild(a);
+    //   todos.appendChild(li);
+    // }
 
     function addTodo(judul, daerah, alamat, cuisines,cost,thumb) {
       var todo = document.getElementById("getText");

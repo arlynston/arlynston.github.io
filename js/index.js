@@ -198,7 +198,7 @@ $.getJSON(settings, function(data) {
    html += "</div>";
    html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:#E84241;'><strong>" + value.name + "</strong></h2></h2>";
    html += "  <strong id='daerah' class='text-dark' val='"+ location.locality +"'>" + location.locality + "</strong><br>";
-   html += "  <h6 id='lokasi' style='color:grey;' val='"+ location.address +"''><strong>" + location.address + "</strong></h6><hr>";
+   html += "  <h6 id='lokasi' val='"+ location.address +"''><strong>" + location.address + "</strong></h6><hr>";
    html += "  <strong id='cuisines' val='"+ value.cuisines +"'>CUISINES</strong>: " + value.cuisines + "<br>";
    html += "  <strong id='cost' val='"+ value.average_cost_for_two +"'>COST FOR TWO</strong>: " + value.currency + " " +value.average_cost_for_two + "<br>";
    html += "</div><br>";

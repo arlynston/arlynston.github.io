@@ -191,13 +191,13 @@ $.getJSON(settings, function(data) {
 
    html += "<span id='inirating' title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
    html += "  <strong class='text-info'>" + userRating.votes + " votes</strong><br>";
-   html += "<button id='fav' style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'>SAVE</button><br>";
+   html += "<button id='fav' class='btn btn-primary' style='color:white;border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;' val='"+ value.name +"' daerah='"+ location.locality +"' alamat='"+ location.address +"' cuisines='"+ value.cuisines +"' cost='"+ value.average_cost_for_two +"' thumb='"+ value.thumb +"'>SAVE</button><br>";
    html += "</div>";
    html += "<div class='gambar'>";
    html += "<img id='thumb' class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='17%' width='17%' val='"+ value.thumb +"'>";
    html += "</div>";
    html += "<h2 href=" + value.url + " target='_blank' class='action_link'><h2 id='judul' style='color:#E84241;'><strong>" + value.name + "</strong></h2></h2>";
-   html += "  <strong id='daerah' class='text-primary' val='"+ location.locality +"'>" + location.locality + "</strong><br>";
+   html += "  <strong id='daerah' class='text-dark' val='"+ location.locality +"'>" + location.locality + "</strong><br>";
    html += "  <h6 id='lokasi' style='color:grey;' val='"+ location.address +"''><strong>" + location.address + "</strong></h6><hr>";
    html += "  <strong id='cuisines' val='"+ value.cuisines +"'>CUISINES</strong>: " + value.cuisines + "<br>";
    html += "  <strong id='cost' val='"+ value.average_cost_for_two +"'>COST FOR TWO</strong>: " + value.currency + " " +value.average_cost_for_two + "<br>";
